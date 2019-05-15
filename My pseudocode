@@ -1,0 +1,3 @@
+#My pseudocode
+#This code will extract UniProtKB names from a gene expression matrix and retrieve full annotation from UniProtKB database
+# 1. Parse a table: 
