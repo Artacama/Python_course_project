@@ -1,3 +1,7 @@
 #My pseudocode
 #This code will extract UniProtKB names from a gene expression matrix and retrieve full annotation from UniProtKB database
-# 1. Parse a table: 
+# 1. Parse a table:
+  Identify a column containing the UniProt ID
+  Cut transcript names and IDs
+  Remove any additional Pfam domains annotations
+  Access a remote database and retrieve an descriptive ID
