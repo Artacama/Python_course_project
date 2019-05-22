@@ -1,9 +1,8 @@
 #My pseudocode:
 #This code will take contig IDs from an expression matrix and fetch annotation from the annotation file(txt/csv):
-<<<<<<< HEAD
 1) Parse an annotation table:
     read the file line by line
-2) store the data in dictionary with ID (column1) as a key and decription (column 2) as a value
+2) store the data in dictionary with ID (column1) as a key and description (column 2) as a value
 3) parse the column 2 for gene ID and annotation
     use "^" as a separator 
 
@@ -12,19 +11,3 @@
 5) If ID in column 1 is found in annotation table column 1
 6) Print annotation as 2nd column
 
-import numpy as np
-matrix = np.loadtxt('trinotate_annotation_report_good.Trinity_assembly_0.95.txt')
-
-=======
-# 1. Parse an annotation table:
-#     extract the 2 first columns
-#     use "^" to separate text in the 2nd column into the separate columns 
-# Create a dictionary with IDs as keys and annotations as values?
-# 2. Load an expression matrix:
-#      Take a single contig ID from the 1st column
-#      Find a matching ID in the annotation file
-#      Transfer the annotation to a new column in the expression matrix
-
-import numpy as np
-matrix = np.loadtxt('trinotate_annotation_report_good.Trinity_assembly_0.95.txt')
->>>>>>> d916c9c1af0605fd2188861807821e2ad0242b0e
