@@ -1,13 +1,35 @@
 #My pseudocode:
 #This code will take contig IDs from an expression matrix and fetch annotation from the annotation file(txt/csv):
-1) Parse an annotation table:
-    read the file line by line
-2) store the data in dictionary with ID (column1) as a key and description (column 2) as a value
-3) parse the column 2 for gene ID and annotation
-    use "^" as a separator 
+#1) Parse an annotation table: read the file line by line
 
-4) Load an expression matrix:
-    Read the file line by line
-5) If ID in column 1 is found in annotation table column 1
-6) Print annotation as 2nd column
+import csv
+with open("/Users/anna/Desktop/trinotate_annotation_report_good.Trinity_assembly_0.95_python_test.csv") as my_csv:
+    headers=["#gene_id", "transcript_id", "sprot_Top_BLASTX_hit", "RNAMMER", "prot_id", "prot_coords", "sprot_Top_BLASTP_hit", "/db/trinotatedbs/Ref_db_for_Balanus_species_named.fasta_BLASTXQ", "/db/trinotatedbs/Ref_db_for_Balanus_species_named.fasta_BLASTP", "Pfam", "SignalP", "TmHMM", "eggnog", "Kegg", "gene_ontology_blast", "gene_ontology_pfam", "transcript", "peptide"]
+    reader=csv.DictReader(my_csv, delimiter=";", fieldnames=headers)
+#2) store the data in dictionary with ID (column1) as a key and description (column 2) as a value
+    my_list=[]
+    for i in reader:
+        my_annot={}
+        my_annot["gene"]=i["#gene_id"]
+        my_annot["annotation"]=i["sprot_Top_BLASTX_hit"]
+        my_list.append(my_annot)
+print (my_list)
 
+#3) Load an expression matrix:
+my_table = open("/Users/anna/Desktop/dummy_matrix", "r")
+lines=my_table.readlines()[1:]
+dummy=[]
+for x in lines:
+    result=[]
+    result.append(x.split('\t')[0])
+    dummy.append(result)
+for i in dummy:
+    if i == my_annot["gene"]
+    return my_annot["annotation"]
+
+
+
+#3) Load an expression matrix:
+#    Read the file line by line
+#4) If ID in column 1 is found in annotation table column 1
+#5) Print annotation as 2nd column
