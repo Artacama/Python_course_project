@@ -1,4 +1,4 @@
-#My pseudocode:
+#My python code:
 #This code will take contig IDs from an expression matrix and fetch annotation from the annotation file(txt/csv):
 #1) Parse an annotation table: read the file line by line
 
@@ -13,9 +13,10 @@ with open("/Users/anna/Desktop/trinotate_annotation_report_good.Trinity_assembly
         my_annot["gene"]=i["#gene_id"]
         my_annot["annotation"]=i["sprot_Top_BLASTX_hit"]
         my_list.append(my_annot)
-print (my_list)
 
+    
 #3) Load an expression matrix:
+
 my_table = open("/Users/anna/Desktop/dummy_matrix", "r")
 lines=my_table.readlines()[1:]
 dummy=[]
@@ -23,13 +24,14 @@ for x in lines:
     result=[]
     result.append(x.split('\t')[0])
     dummy.append(result)
-for i in dummy:
-    if i == my_annot["gene"]
-    return my_annot["annotation"]
+    my_dummy_list = sum(dummy, [])
+print (my_dummy_list)
 
-
-
-#3) Load an expression matrix:
-#    Read the file line by line
-#4) If ID in column 1 is found in annotation table column 1
-#5) Print annotation as 2nd column
+#4) If ID in column 1 is found in annotation table column 1 print gene ID and annotation
+annotation_table=[]
+for item in my_dummy_list:
+    if item == my_annot['gene']:
+        annotation_table.append(my_annot['gene']+'     '+ my_annot['annotation'])
+    else:
+        print ("No match found")
+print(annotation_table)
