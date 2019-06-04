@@ -34,6 +34,7 @@ for item in my_dummy_list:
         if item in other_item['gene']:
             annotation_table.append({"gene": other_item['gene'], "annotation": other_item['annotation']})
 
+#5) Write the result table in a csv file:
 with open("/Users/anna/Desktop/GitHub/test_project_pseudocode/output_annotation.csv", "w+") as out:
     fieldnames=["gene", "annotation"]
     my_annotation_table=csv.DictWriter(out, delimiter=';', fieldnames=fieldnames)
@@ -41,4 +42,4 @@ with open("/Users/anna/Desktop/GitHub/test_project_pseudocode/output_annotation.
         my_annotation_table.writerow({"gene": thing['gene'], "annotation": thing['annotation']})
 
 
-print(annotation_table)
+
