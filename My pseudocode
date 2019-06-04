@@ -3,7 +3,7 @@
 #1) Parse an annotation table: read the file line by line
 
 import csv
-with open("/Users/anna/Desktop/trinotate_annotation_report_good.Trinity_assembly_0.95_python_test.csv") as my_csv:
+with open("/Users/anna/Desktop/GitHub/test_project_pseudocode/trinotate_annotation_report.csv") as my_csv:
     headers=["#gene_id", "transcript_id", "sprot_Top_BLASTX_hit", "RNAMMER", "prot_id", "prot_coords", "sprot_Top_BLASTP_hit", "/db/trinotatedbs/Ref_db_for_Balanus_species_named.fasta_BLASTXQ", "/db/trinotatedbs/Ref_db_for_Balanus_species_named.fasta_BLASTP", "Pfam", "SignalP", "TmHMM", "eggnog", "Kegg", "gene_ontology_blast", "gene_ontology_pfam", "transcript", "peptide"]
     reader=csv.DictReader(my_csv, delimiter=";", fieldnames=headers)
 #2) store the data in dictionary with ID (column1) as a key and description (column 2) as a value
@@ -13,11 +13,11 @@ with open("/Users/anna/Desktop/trinotate_annotation_report_good.Trinity_assembly
         my_annot["gene"]=i["#gene_id"]
         my_annot["annotation"]=i["sprot_Top_BLASTX_hit"]
         my_list.append(my_annot)
-
-    
+        #print (my_annot)
+#print(my_list)
 #3) Load an expression matrix:
 
-my_table = open("/Users/anna/Desktop/dummy_matrix", "r")
+my_table = open("/Users/anna/Desktop/GitHub/test_project_pseudocode/dummy_expression_matrix", "r")
 lines=my_table.readlines()[1:]
 dummy=[]
 for x in lines:
@@ -30,8 +30,15 @@ print (my_dummy_list)
 #4) If ID in column 1 is found in annotation table column 1 print gene ID and annotation
 annotation_table=[]
 for item in my_dummy_list:
-    if item == my_annot['gene']:
-        annotation_table.append(my_annot['gene']+'     '+ my_annot['annotation'])
-    else:
-        print ("No match found")
+    for other_item in my_list:
+        if item in other_item['gene']:
+            annotation_table.append({"gene": other_item['gene'], "annotation": other_item['annotation']})
+
+with open("/Users/anna/Desktop/GitHub/test_project_pseudocode/output_annotation.csv", "w+") as out:
+    fieldnames=["gene", "annotation"]
+    my_annotation_table=csv.DictWriter(out, delimiter=';', fieldnames=fieldnames)
+    for thing in annotation_table:
+        my_annotation_table.writerow({"gene": thing['gene'], "annotation": thing['annotation']})
+
+
 print(annotation_table)
